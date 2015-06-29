@@ -1,10 +1,14 @@
 FROM buildpack-deps:wheezy
 
-MAINTAINER Wu Ray wulei@digitalearth.cn
-
-ENV PFX vxtools
+MAINTAINER Wu Ray
 
 COPY tars/ /root/
+ADD ftp://ftp.gmplib.org/pub/gmp-5.0.2/gmp-5.0.2.tar.bz2 /root/tars
+ADD http://www.mpfr.org/mpfr-current/mpfr-3.1.3.tar.gz /root/tars
+ADD http://www.multiprecision.org/mpC/download/mpc-0.9.tar.gz /root/tars
+ADD http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2 /root/tars
+ADD http://ftpmirror.gnu.org/gcc/gcc-4.6.4/gcc-core-4.6.4.tar.bz2 /root/tars
+ADD http://ftpmirror.gnu.org/gdb/gdb-7.3.1.tar.bz2 /root/tars
 
 RUN cd /root \
     && tar xjf gmp-5.0.2.tar.bz2 \
@@ -57,7 +61,7 @@ RUN cd /root \
 
 RUN cd /root \
     && rm binutils-2.21.1.tar.bz2 && rm -rf binutils-2.21.1 \
-    && rm gcc-core-4.6.4.tar.bz2 && rm -rf gcc-core-4.6.4 \
+    && rm gcc-core-4.6.4.tar.bz2 && rm -rf gcc-4.6.4 \
     && rm gdb-7.3.1.tar.bz2 && rm -rf gdb-7.3.1 \
     && rm gmp-5.0.2.tar.bz2 && rm -rf gmp-5.0.2 \
     && rm mpc-0.9.tar.gz && rm -rf mpc-0.9 \
